@@ -25,11 +25,11 @@ jobs:
           key: ${{ secrets.KEY_ED25519 }}
           port: ${{ secrets.PORT }}
           script: |
-            if test ! -e Projects/catservent 
-              mkdir Projects
-              git clone https://github.com/Cat-Empier/CatServant Projects/catservent
+            if test ! -e Projects/catservant 
+              mkdir -p Projects/catservant
+              git clone https://github.com/Cat-Empire/CatServant Projects/catservant
             end
-            cd Projects/catservent
+            cd Projects/catservant
             git fetch origin main
             git reset --hard origin/main
             make docker-build
