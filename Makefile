@@ -28,7 +28,7 @@ clean: ## Remove build related file
 
 docker-build: ## Use the Dockerfile to build container
 	docker build -t $(BINARY_NAME)-image .
-	docker run -it --rm --name $(BINARY_NAME)-bot $(BINARY_NAME)-image
+	docker run -d --rm --name $(BINARY_NAME)-bot $(BINARY_NAME)-image
 ## Help:
 help: ## Show this help
 	@echo -e '😺CatServent\n'
