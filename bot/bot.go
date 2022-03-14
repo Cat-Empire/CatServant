@@ -6,13 +6,14 @@ import (
 	"github.com/bwmarrin/discordgo"
 
 )
+
 var BotID string
 var CatServant *discordgo.Session 
 
 func Start(){
 	
 	//make a Bot
-	CatServant, err := discordgo.New("Bot " + config.Token)
+	CatServant, err := discordgo.New("Bot " + config.ConfigInfo.Token)
 	
 	if err != nil {
 		fmt.Println(err.Error())
@@ -48,9 +49,9 @@ func messageHandler(session *discordgo.Session, message *discordgo.MessageCreate
 		return
 	}
 
-	 if message.Content == "Koda" {
+	 if message.Content == "Hi" {
 
-		_, _ = session.ChannelMessageSend(message.ChannelID, "Hi Koda May!")
+		_, _ = session.ChannelMessageSend(message.ChannelID, "Hi there!")
 		
 	 }
 

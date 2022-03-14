@@ -14,19 +14,21 @@ CYAN   := $(shell tput -Txterm setaf 6)
 RESET  := $(shell tput -Txterm sgr0)
 
 ## Run:
-run: ## Run CatBot without building
-	$(GOCMD) run main.go
+run: build ## Run CatBot without building
+	./out/bin/$(BINARY_NAME)
 ## Build:
 build: ## Build CatBot (the output binary in out/bin/)
 	mkdir -p out/bin
 	cp config.json out/bin
-	cp Meow.dca out/bin
 	GO111MODULE=on $(GOCMD) build -o out/bin/$(BINARY_NAME) .
 
 clean: ## Remove build related file
 	rm -fr ./bin
 	rm -fr ./out
 
+docker-build: ## Use the Dockerfile to build container
+	docker build -t $(BINARY_NAME)-image .
+	docker run -it --rm --name $(BINARY_NAME)-bot $(BINARY_NAME)-image
 ## Help:
 help: ## Show this help
 	@echo -e '😺CatServent\n'
