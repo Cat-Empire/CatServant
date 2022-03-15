@@ -1,7 +1,7 @@
 GOCMD=go
 GOTEST=$(GOCMD) test
 GOVET=$(GOCMD) vet
-BINARY_NAME=catservant
+NAME=catservant
 VERSION?=0.0.0
 SERVICE_PORT?=3000
 DOCKER_REGISTRY?= #if set it should finished by /
@@ -15,20 +15,21 @@ RESET  := $(shell tput -Txterm sgr0)
 
 ## Run:
 run: build ## Run CatBot without building
-	./out/bin/$(BINARY_NAME)
+	./out/bin/$(NAME)
 ## Build:
 build: ## Build CatBot (the output binary in out/bin/)
 	mkdir -p out/bin
 	cp config.json out/bin
-	GO111MODULE=on $(GOCMD) build -o out/bin/$(BINARY_NAME) .
+	GO111MODULE=on $(GOCMD) build -o out/bin/$(NAME) .
 
 clean: ## Remove build related file
 	rm -fr ./bin
 	rm -fr ./out
 
 docker-build: ## Use the Dockerfile to build container
-	docker build -t $(BINARY_NAME)-image .
-	docker run -d --rm --name $(BINARY_NAME)-bot $(BINARY_NAME)-image
+	docker build -t $(NAME)-image .
+	docker stop $(NAME)-bot || true && docker rm $(NAME)-bot || true
+	docker run -d --rm --name $(NAME)-bot $(NAME)-image
 ## Help:
 help: ## Show this help
 	@echo -e '😺CatServent\n'
