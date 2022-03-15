@@ -2,16 +2,16 @@
 This is the core bot of the cat empire discord server
 
 ## Table of Content
-- (Features)
-- (Contribution)
-- (License)
+- [Features](#features)
+- [Contribution](#contribution)
+- [License](#license)
 
-# Features
+## Features
 - [ ] Say welcome to newcomers
 - [ ] Talk to the cat-backend
 
-# Contribution
+## Contribution
 Instruction of how to contribute to the bot
 
-# License
+## License
 This project is licensed under the terms of the MIT license.
